@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+actor Пользователь as user
+actor Диспетчер as dispatcher
+actor Службы as services
+
+
+rectangle Приложение {
+  usecase "Авторизироваться" as auth
+}
+
+rectangle Приложение {
+}
+
+rectangle Приложение {
+}
+
+rectangle Диспетчеры {
+   usecase "Войти в раздлел" as entryDispatcher
+     
+}
+
+rectangle Службы {
+    usecase "Войти в раздлел" as entryServices
+}
+
+
+user --> auth
+
+auth --> dispatcher
+dispatcher --> entryDispatcher
+services --> entryServices
+
+auth ---> services
+
+@enduml

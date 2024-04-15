@@ -1,0 +1,14 @@
+«По умолчанию все маршруты Laravel определены в файле app/Http/routes.php,
+который автоматически добавляется в каждый новый проект» — на самом деле 
+роуты лежат в папке routes, там три файла — api.php, web.php и console.php
+
+При ошибке View [common.errors] not found. (View: W:\domains\laravel.local\resources\views\tasks.blade.php)
+common.errors was not found  - т.е. не найден файл common.errors в \laravel.local\resources\views\tasks.blade.php
+Нужно было лишь удалить директиву @include('common.errors')
+
+clear the cache: php artisan optimize:clear
+composer dump-autoload
+
+
+composer запускается через Консоль на сервере (OpenServer)
+

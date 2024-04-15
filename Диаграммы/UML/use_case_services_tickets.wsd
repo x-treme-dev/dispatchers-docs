@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+rectangle Службы {
+    actor Служба as Service
+}
+ 
+
+package Страница_Заявки {
+    usecase "Заполнить заявку" as toWriteTicket
+    usecase "Сохранить заявку" as toSaveTicket
+
+}
+note right of Service : Добавить\n описание\n выполненной\n работы\n по заявке
+
+Service -> toWriteTicket
+Service -> toSaveTicket
+
+@enduml

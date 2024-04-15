@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+rectangle Службы {
+    actor Служба as service
+}
+package Журналы_Заявок {
+  usecase "Выбрать службу из списка" as select  
+  usecase "Вывести заявки на экран" as output
+  usecase "фильтры" as filters
+  usecase "Просмотреть содержание заявки" as seeticket
+  usecase "Закрыть заявку" as closeticket
+     
+}
+note right of service : Работа\n с журналами\n заявок
+service --> select
+service --> output
+output .> filters: включает
+service --> seeticket
+service --> closeticket
+@enduml

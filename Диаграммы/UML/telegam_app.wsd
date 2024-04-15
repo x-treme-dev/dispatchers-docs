@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+rectangle Диспетчеры {
+    actor Диспетчер as dispatcher
+}
+
+rectangle Services {
+    actor Службы as services
+}
+package Приложение {
+   usecase "Создать заявку" as toCreateTicket
+   usecase "Сохранить заявку" as toSaveTicket
+   usecase "Проверить заполнение заявки" as toControlTicket
+   usecase "Закрыть заявку" as toCloseTicket
+   usecase "Заполнить форму заявки" as toWriteForm
+}
+
+package Telegram {
+  usecase "Просмотреть заявку" as toSeeTicket
+  usecase "Перейти по ссылке" as toGoLink
+}
+
+dispatcher -> toCreateTicket
+dispatcher --> toSaveTicket
+
+ 
+Telegram .- Приложение: обмен данными
+
+services --> toGoLink
+toSeeTicket <-- services
+services --> toWriteForm
+ 
+
+dispatcher --> toCloseTicket
+dispatcher --> toControlTicket
+
+@enduml

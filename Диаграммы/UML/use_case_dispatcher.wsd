@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+rectangle Диспетчеры {
+    actor Диспетчер as dispatcher
+}
+package Журналы {
+  usecase "Смотреть Журналы" as journal
+  usecase "Список служб" as select  
+  usecase "Вывести заявки на экран" as output
+  usecase "фильтры" as filters
+  usecase "Просмотреть содержание заявки" as seeticket
+  usecase "Сохранить заявку" as saveticket
+}
+
+package Заявки {
+  usecase "Заполнить Заявку" as writeticket
+   usecase "Список служб" as listofservices 
+}
+
+note right of dispatcher : Смотрит\n Журналы,\n составляет\n заявки
+dispatcher --> journal
+journal .> select:включает
+dispatcher --> output
+output .> filters: включает
+dispatcher --> seeticket
+seeticket .> saveticket: включает
+
+dispatcher --> writeticket
+writeticket .> listofservices: включает
+
+@enduml
+

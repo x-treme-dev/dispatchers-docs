@@ -1,0 +1,51 @@
+1.Run git clone <my-cool-project>
+2.Run composer install
+3.Run cp .env.example .env
+4.Run php artisan key:generate
+5.Run php artisan migrate
+6.Run php artisan serve
+7.Go to link localhost:8000
+
+
+composer.json и composer.lock должны быть закоммичены в git
+
+27.02.2024 При переносе проекта с удаленного репозитория файл необходимо было обновить 
+composer командой composer update из директории проекта. Однако при вводе команды выскочила
+ошибка:
+
+"./composer.lock" does not contain valid JSON
+  Parse error on line 270:
+
+Решение: удалил файл composer.lock из директории проекта и опять запустил команду:
+composer update
+
+
+
+Перенос проекта на Laravel на удаленный хостинг.
+
+Сделал сайт на laravel. Все "закамитил" и "запулил" на github. Теперь не получается развернуть его на хостинге. Вот что я делаю:
+1) В панели SSH команда: git clone https://github.com/USER/some_project.git
+2) Обновляю composer команда: composer update
+3) Переименовываю файл env.exaple в .env
+4) Создаю новый ключ для проекта команда: php artisan key:generate
+5) База данных на сайте не используется так что тут ничего делать не нужно.
+
+После всех этих манипуляций сервер возвращает ошибку 500 ... мне почему то кажется что проблема с файлом .env и ключом. 
+Я пробовал вставлять старый ключ из моего проекта но все тщетно. После чего психанул и просто загрузил все файлы через FTP и в все заработало... 
+Хотелось бы понять что я делаю не так в случае c загрузкой через github? 
+
+Ошибка была тут
+
+2) Обновляю composer команда: composer update -
+
+необходимо использовать команду: composer install
+При использовании этой команды все запускается. 
+
+
+Из оф.документации:
+
+git clone https://github.com/laravel/quickstart-basic quickstart
+cd quickstart
+composer install
+php artisan migrate
+
